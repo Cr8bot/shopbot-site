@@ -9,17 +9,22 @@
     html{scroll-behavior:smooth}
     body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;color:#111;background:#fff;overflow-x:hidden}
 
-    /* ANIMATIONS */
     @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
     @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.95)}}
     @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
-    @keyframes slideIn{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}
-    @keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
-    @keyframes typing{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
     @keyframes gradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
     @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+    @keyframes typing{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
     .fade-up{opacity:0;transform:translateY(30px);transition:all .7s ease}
     .fade-up.visible{opacity:1;transform:translateY(0)}
+
+    /* COOKIE BANNER */
+    #cookie-banner{position:fixed;bottom:0;left:0;right:0;background:#1a1a1a;color:#ddd;padding:16px 32px;display:flex;align-items:center;justify-content:space-between;gap:16px;z-index:9999;border-top:1px solid #333;flex-wrap:wrap}
+    #cookie-banner p{font-size:13px;line-height:1.5;max-width:700px}
+    #cookie-banner a{color:#7C76FF;text-decoration:underline}
+    .cookie-btns{display:flex;gap:10px;flex-shrink:0}
+    .cookie-accept{background:linear-gradient(135deg,#4F46E5,#7C3AED);color:white;border:none;padding:10px 20px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer}
+    .cookie-refuse{background:transparent;color:#aaa;border:1px solid #444;padding:10px 20px;border-radius:8px;font-size:13px;cursor:pointer}
 
     /* NAV */
     nav{display:flex;align-items:center;justify-content:space-between;padding:18px 60px;background:rgba(255,255,255,.9);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,.06);position:sticky;top:0;z-index:100}
@@ -32,7 +37,7 @@
     .nav-cta:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(79,70,229,.4)!important}
 
     /* HERO */
-    .hero{min-height:90vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:80px 40px;position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 0%, #EEF2FF 0%, #fff 70%)}
+    .hero{min-height:90vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:80px 40px;position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 0%,#EEF2FF 0%,#fff 70%)}
     .hero-bg-orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:.25;pointer-events:none}
     .orb1{width:600px;height:600px;background:#4F46E5;top:-200px;left:-100px;animation:float 8s ease-in-out infinite}
     .orb2{width:400px;height:400px;background:#7C3AED;bottom:-100px;right:-50px;animation:float 10s ease-in-out infinite reverse}
@@ -49,7 +54,7 @@
     .btn-ghost{background:white;color:#111;padding:16px 32px;border-radius:100px;text-decoration:none;font-size:15px;font-weight:600;border:1.5px solid #eee;transition:all .3s}
     .btn-ghost:hover{border-color:#4F46E5;color:#4F46E5;transform:translateY(-2px)}
 
-    /* CHAT WIDGET DÉMO */
+    /* CHAT DÉMO */
     .hero-demo{margin-top:60px;display:flex;justify-content:center;animation:fadeUp .8s .4s ease both}
     .demo-widget{background:white;border-radius:20px;box-shadow:0 24px 80px rgba(0,0,0,.12);width:340px;overflow:hidden;animation:float 6s ease-in-out infinite}
     .demo-header{background:linear-gradient(135deg,#4F46E5,#7C3AED);padding:16px 20px;display:flex;align-items:center;gap:10px}
@@ -57,7 +62,7 @@
     .demo-info p{color:white;font-weight:700;font-size:14px;margin:0}
     .demo-info small{color:rgba(255,255,255,.7);font-size:11px}
     .demo-online{width:8px;height:8px;border-radius:50%;background:#22C55E;display:inline-block;margin-right:4px}
-    .demo-msgs{padding:16px;display:flex;flex-direction:column;gap:10px;background:#f8f9ff}
+    .demo-msgs{padding:16px;display:flex;flex-direction:column;gap:10px;background:#f8f9ff;min-height:160px}
     .dm-bot,.dm-user{padding:10px 14px;border-radius:14px;font-size:13px;line-height:1.5;max-width:85%}
     .dm-bot{background:white;color:#333;align-self:flex-start;border-bottom-left-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,.06)}
     .dm-user{background:linear-gradient(135deg,#4F46E5,#7C3AED);color:white;align-self:flex-end;border-bottom-right-radius:4px}
@@ -67,11 +72,11 @@
     .dm-typing span:nth-child(3){animation-delay:.4s}
     .demo-input{padding:12px 16px;border-top:1px solid #f0f0f0;display:flex;gap:8px;align-items:center;background:white}
     .demo-input-field{flex:1;background:#f5f5f5;border:none;border-radius:20px;padding:8px 14px;font-size:12px;color:#888}
-    .demo-send{width:32px;height:32px;background:linear-gradient(135deg,#4F46E5,#7C3AED);border:none;border-radius:50%;color:white;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+    .demo-send{width:32px;height:32px;background:linear-gradient(135deg,#4F46E5,#7C3AED);border:none;border-radius:50%;color:white;font-size:14px;cursor:pointer}
 
     /* MARQUEE */
-    .marquee-wrap{background:#111;padding:16px 0;overflow:hidden;position:relative}
-    .marquee-track{display:flex;gap:0;width:max-content;animation:marquee 20s linear infinite}
+    .marquee-wrap{background:#111;padding:16px 0;overflow:hidden}
+    .marquee-track{display:flex;width:max-content;animation:marquee 20s linear infinite}
     .marquee-item{display:flex;align-items:center;gap:8px;padding:0 32px;color:#888;font-size:13px;font-weight:600;letter-spacing:.05em;white-space:nowrap}
     .marquee-dot{width:6px;height:6px;border-radius:50%;background:#4F46E5}
 
@@ -103,7 +108,7 @@
     .features-section h2{font-size:48px;font-weight:900;letter-spacing:-2px;margin-bottom:16px;line-height:1.1}
     .features-section p.lead{font-size:17px;color:#666;max-width:520px;line-height:1.6;margin-bottom:56px}
     .features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-    .feature-card{border:1.5px solid #f0f0f0;border-radius:20px;padding:28px;transition:all .3s;cursor:default;background:white}
+    .feature-card{border:1.5px solid #f0f0f0;border-radius:20px;padding:28px;transition:all .3s;background:white}
     .feature-card:hover{border-color:#4F46E5;transform:translateY(-6px);box-shadow:0 20px 40px rgba(79,70,229,.1)}
     .feature-icon{width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#EEF2FF,#E0E7FF);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:18px}
     .feature-card h3{font-size:16px;font-weight:700;margin-bottom:10px;color:#111}
@@ -120,19 +125,16 @@
     .step h3{font-size:17px;font-weight:700;margin-bottom:10px;color:#111}
     .step p{font-size:13px;color:#888;line-height:1.6}
 
-    /* TÉMOIGNAGES */
-    .testi-section{padding:100px 60px;background:white}
-    .testi-inner{max-width:1100px;margin:0 auto}
-    .testi-section h2{font-size:48px;font-weight:900;letter-spacing:-2px;margin-bottom:56px;line-height:1.1}
-    .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-    .testi-card{border:1.5px solid #f0f0f0;border-radius:20px;padding:28px;transition:all .3s;background:white}
-    .testi-card:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(0,0,0,.08);border-color:#E0E7FF}
-    .testi-stars{font-size:16px;margin-bottom:14px;color:#FFB800}
-    .testi-text{font-size:14px;color:#555;line-height:1.7;margin-bottom:20px;font-style:italic}
-    .testi-author{display:flex;align-items:center;gap:12px}
-    .testi-avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#4F46E5,#7C3AED);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:white}
-    .testi-name{font-size:14px;font-weight:700;color:#111}
-    .testi-role{font-size:12px;color:#aaa;margin-top:2px}
+    /* EARLY ADOPTERS */
+    .early-section{padding:100px 60px;background:white;text-align:center}
+    .early-inner{max-width:700px;margin:0 auto}
+    .early-section h2{font-size:40px;font-weight:900;letter-spacing:-1.5px;margin-bottom:16px}
+    .early-section p{font-size:16px;color:#888;line-height:1.6;margin-bottom:40px}
+    .early-perks{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:48px}
+    .perk{background:#fafafa;border:1px solid #f0f0f0;border-radius:16px;padding:20px;text-align:center}
+    .perk-icon{font-size:28px;margin-bottom:10px}
+    .perk h3{font-size:14px;font-weight:700;color:#111;margin-bottom:6px}
+    .perk p{font-size:12px;color:#888;line-height:1.4}
 
     /* PRICING */
     .pricing-section{padding:100px 60px;background:linear-gradient(135deg,#fafafa,#f0f0ff)}
@@ -162,27 +164,173 @@
     .cta-section p{font-size:18px;color:rgba(255,255,255,.5);margin-bottom:44px}
 
     /* FOOTER */
-    footer{background:#111;color:#555;padding:48px 60px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid #1a1a1a}
-    .foot-logo{font-size:18px;font-weight:800;color:white;letter-spacing:-1px}
+    footer{background:#111;color:#555;padding:48px 60px}
+    .footer-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:40px;flex-wrap:wrap;gap:32px}
+    .foot-logo{font-size:20px;font-weight:800;color:white;letter-spacing:-1px;margin-bottom:8px}
     .foot-logo em{font-style:normal;background:linear-gradient(135deg,#4F46E5,#7C3AED);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-    footer p{font-size:13px}
-    .foot-links a{color:#555;text-decoration:none;margin-left:24px;font-size:13px;transition:color .2s}
-    .foot-links a:hover{color:white}
+    .foot-desc{font-size:13px;color:#555;line-height:1.5;max-width:240px}
+    .foot-col h4{font-size:13px;font-weight:700;color:#888;letter-spacing:.05em;text-transform:uppercase;margin-bottom:16px}
+    .foot-col a{display:block;color:#555;text-decoration:none;font-size:13px;margin-bottom:10px;transition:color .2s}
+    .foot-col a:hover{color:white}
+    .footer-bottom{border-top:1px solid #1a1a1a;padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+    .footer-bottom p{font-size:12px;color:#444}
+    .footer-bottom a{color:#444;text-decoration:none;font-size:12px;margin-left:16px}
+    .footer-bottom a:hover{color:#888}
+
+    /* LEGAL PAGES */
+    .legal-page{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:white;z-index:9998;overflow-y:auto;padding:60px}
+    .legal-page.active{display:block}
+    .legal-page h1{font-size:32px;font-weight:800;margin-bottom:8px}
+    .legal-page h2{font-size:18px;font-weight:700;margin:24px 0 8px}
+    .legal-page p{font-size:14px;color:#555;line-height:1.7;margin-bottom:12px}
+    .legal-close{position:fixed;top:24px;right:24px;background:#111;color:white;border:none;padding:10px 20px;border-radius:8px;cursor:pointer;font-size:14px;font-weight:600}
 
     @media(max-width:768px){
       nav{padding:16px 20px}.nav-right a:not(.nav-cta){display:none}
       .hero h1{font-size:40px;letter-spacing:-1px}
-      .hero p{font-size:16px}
-      .stats-grid,.problem-cards,.features-grid,.steps-grid,.testi-grid{grid-template-columns:1fr}
+      .stats-grid,.problem-cards,.features-grid,.steps-grid,.early-perks{grid-template-columns:1fr}
       .steps-grid::before{display:none}
-      .stats-section,.problem-section,.features-section,.how-section,.testi-section,.pricing-section,.cta-section{padding:60px 24px}
+      .stats-section,.problem-section,.features-section,.how-section,.early-section,.pricing-section,.cta-section{padding:60px 24px}
       .cta-section h2{font-size:36px}
-      footer{flex-direction:column;gap:20px;text-align:center;padding:32px 24px}
-      .foot-links{margin-top:8px}
+      footer{padding:40px 24px}
+      .footer-top{flex-direction:column}
+      #cookie-banner{padding:16px}
     }
   </style>
 </head>
 <body>
+
+<!-- COOKIE BANNER -->
+<div id="cookie-banner">
+  <p>🍪 Nous utilisons des cookies pour améliorer votre expérience. En continuant à naviguer, vous acceptez notre <a href="#" onclick="showLegal('privacy');return false">Politique de confidentialité</a>.</p>
+  <div class="cookie-btns">
+    <button class="cookie-refuse" onclick="document.getElementById('cookie-banner').style.display='none'">Refuser</button>
+    <button class="cookie-accept" onclick="document.getElementById('cookie-banner').style.display='none'">Accepter</button>
+  </div>
+</div>
+
+<!-- PAGES LÉGALES -->
+<div class="legal-page" id="legal-cgu">
+  <button class="legal-close" onclick="hideLegal()">✕ Fermer</button>
+  <h1>Conditions Générales d'Utilisation</h1>
+  <p><em>Dernière mise à jour : juillet 2026</em></p>
+
+  <p>Les présentes Conditions Générales d'Utilisation (CGU) régissent l'accès et l'utilisation du service ShopBot, édité par Cr8management. En accédant au service ShopBot ou en l'utilisant, vous acceptez sans réserve les présentes CGU. Si vous n'acceptez pas ces conditions, veuillez ne pas utiliser le service.</p>
+
+  <h2>1. Présentation du service</h2>
+  <p>ShopBot est un service SaaS (Software as a Service) d'assistant IA de support client destiné aux boutiques e-commerce. Il permet d'automatiser les réponses aux questions des clients finaux concernant les retours, la livraison, la FAQ et les informations générales de la boutique.</p>
+  <p>Le service est édité par Cr8management, joignable à l'adresse : Cr8management@gmail.com</p>
+
+  <h2>2. Accès au service</h2>
+  <p>L'accès au service ShopBot est conditionné à la création d'un compte et à la souscription d'un abonnement mensuel payant via notre partenaire de paiement Stripe. Un essai gratuit de 14 jours est proposé lors de l'inscription, sous réserve de la fourniture d'un moyen de paiement valide.</p>
+  <p>À l'issue de la période d'essai, l'abonnement est automatiquement activé et prélevé selon la formule choisie, sauf résiliation préalable par l'utilisateur.</p>
+  <p>L'accès au service est strictement personnel et non transférable. Chaque compte est lié à une boutique e-commerce identifiée par un identifiant unique (SHOP_ID) fourni par Cr8management.</p>
+
+  <h2>3. Tarification et facturation</h2>
+  <p>Le prix de l'abonnement est indiqué en euros TTC sur la page de tarification. Les paiements sont prélevés mensuellement à la date anniversaire de souscription.</p>
+  <p>Cr8management se réserve le droit de modifier ses tarifs à tout moment, avec un préavis de 30 jours communiqué par email. En cas de désaccord, l'utilisateur peut résilier son abonnement avant l'entrée en vigueur des nouveaux tarifs.</p>
+  <p>Aucun remboursement ne sera effectué pour les périodes d'abonnement entamées, sauf obligation légale contraire.</p>
+
+  <h2>4. Obligations de l'utilisateur</h2>
+  <p>En utilisant ShopBot, l'utilisateur s'engage à :</p>
+  <p>— Fournir des informations exactes, complètes et à jour lors de l'inscription et de la configuration du service ;</p>
+  <p>— Utiliser ShopBot dans le respect des lois et réglementations en vigueur, notamment le RGPD ;</p>
+  <p>— Ne pas tenter de contourner, désactiver ou interférer avec les mesures de sécurité du service ;</p>
+  <p>— Ne pas utiliser le service à des fins illicites, frauduleuses ou portant atteinte aux droits de tiers ;</p>
+  <p>— Ne pas tenter de reproduire, copier, vendre ou revendre tout ou partie du service sans autorisation expresse ;</p>
+  <p>— Informer ses propres clients finaux de l'utilisation d'un assistant IA dans la gestion du support.</p>
+
+  <h2>5. Propriété intellectuelle</h2>
+  <p>L'ensemble des éléments constitutifs du service ShopBot (code source, design, algorithmes, marque, logo) est la propriété exclusive de Cr8management et est protégé par les lois relatives à la propriété intellectuelle.</p>
+  <p>L'utilisateur bénéficie d'un droit d'usage personnel, non exclusif et non transférable du service pour la durée de son abonnement. Tout autre usage est strictement interdit sans autorisation écrite préalable.</p>
+
+  <h2>6. Disponibilité du service</h2>
+  <p>Cr8management s'engage à mettre tout en œuvre pour assurer la disponibilité du service 24h/24 et 7j/7. Cependant, des interruptions ponctuelles peuvent survenir pour des raisons de maintenance, de mise à jour ou de force majeure.</p>
+  <p>Cr8management ne saurait être tenu responsable des interruptions de service liées à des tiers (hébergeur, fournisseur d'IA, opérateur réseau) ou à des événements de force majeure.</p>
+  <p>En cas d'interruption planifiée, l'utilisateur sera informé par email dans les meilleurs délais.</p>
+
+  <h2>7. Limitation de responsabilité</h2>
+  <p>ShopBot est un outil d'assistance basé sur l'intelligence artificielle. Les réponses générées peuvent être incomplètes, inexactes ou inadaptées à certaines situations. Cr8management ne saurait être tenu responsable :</p>
+  <p>— Des réponses générées automatiquement par l'IA ;</p>
+  <p>— Des décisions prises par les clients finaux sur la base de ces réponses ;</p>
+  <p>— Des pertes de données, manques à gagner ou préjudices indirects liés à l'utilisation du service ;</p>
+  <p>— Des dommages résultant d'une utilisation non conforme aux présentes CGU.</p>
+  <p>La responsabilité de Cr8management est limitée au montant des sommes effectivement versées par l'utilisateur au cours des 3 derniers mois précédant le dommage.</p>
+
+  <h2>8. Résiliation</h2>
+  <p><strong>Par l'utilisateur :</strong> l'abonnement peut être résilié à tout moment depuis l'espace de gestion Stripe. La résiliation prend effet à la fin de la période d'abonnement en cours. L'accès au service reste actif jusqu'à cette date.</p>
+  <p><strong>Par Cr8management :</strong> nous nous réservons le droit de suspendre ou résilier immédiatement l'accès au service en cas de violation des présentes CGU, de non-paiement ou d'utilisation abusive du service.</p>
+  <p>En cas de résiliation, les données de l'utilisateur sont conservées pendant 12 mois conformément à notre politique de confidentialité, puis définitivement supprimées.</p>
+
+  <h2>9. Modification des CGU</h2>
+  <p>Cr8management se réserve le droit de modifier les présentes CGU à tout moment. Les modifications seront notifiées par email avec un préavis de 15 jours. L'utilisation continue du service après ce délai vaut acceptation des nouvelles conditions. En cas de désaccord, l'utilisateur peut résilier son abonnement sans frais pendant cette période.</p>
+
+  <h2>10. Droit applicable et juridiction</h2>
+  <p>Les présentes CGU sont régies par le droit français. En cas de litige, les parties s'engagent à rechercher une solution amiable avant tout recours judiciaire. À défaut d'accord amiable, tout litige sera soumis à la compétence exclusive des tribunaux français.</p>
+
+  <h2>11. Contact</h2>
+  <p>Pour toute question relative aux présentes CGU :<br>
+  <strong>Email :</strong> Cr8management@gmail.com<br>
+  <strong>Délai de réponse :</strong> sous 30 jours ouvrés</p>
+</div>
+
+<div class="legal-page" id="legal-privacy">
+  <button class="legal-close" onclick="hideLegal()">✕ Fermer</button>
+  <h1>Politique de Confidentialité</h1>
+  <p><em>Dernière mise à jour : juillet 2026</em></p>
+
+  <p>Chez <strong>ShopBot</strong>, édité par Cr8management, nous accordons une importance primordiale à la protection de vos données personnelles. Cette politique explique de manière transparente quelles données nous collectons, pourquoi, comment nous les protégeons et quels sont vos droits.</p>
+
+  <h2>1. Qui sommes-nous ?</h2>
+  <p>ShopBot est un service d'assistant IA de support client pour boutiques e-commerce, édité par Cr8management. Pour toute question relative à vos données personnelles, vous pouvez nous contacter à : <strong>Cr8management@gmail.com</strong></p>
+
+  <h2>2. Données collectées</h2>
+  <p>Selon votre utilisation du service, nous collectons les données suivantes :</p>
+  <p><strong>Lors de votre inscription :</strong> adresse email, informations de facturation (traitées exclusivement par Stripe — nous n'avons pas accès à vos données bancaires).</p>
+  <p><strong>Lors de l'utilisation du service :</strong> messages échangés avec le bot ShopBot (utilisés uniquement pour améliorer la qualité des réponses), identifiant de boutique, configuration de votre widget.</p>
+  <p><strong>Données techniques :</strong> adresse IP, type de navigateur, système d'exploitation, pages consultées, durée de visite. Ces données sont collectées de manière anonyme à des fins statistiques.</p>
+  <p><strong>Cookies :</strong> nous utilisons uniquement des cookies techniques nécessaires au bon fonctionnement du service. Aucun cookie publicitaire ou de tracking tiers n'est utilisé sans votre consentement.</p>
+
+  <h2>3. Utilisation des données</h2>
+  <p>Vos données sont utilisées exclusivement pour :</p>
+  <p>— Gérer votre compte et votre abonnement ShopBot ;</p>
+  <p>— Vous contacter concernant votre service (mises à jour, alertes, support) ;</p>
+  <p>— Améliorer la qualité et les performances de ShopBot ;</p>
+  <p>— Assurer la sécurité et le bon fonctionnement du service.</p>
+  <p><strong>Nous ne vendons, ne louons et ne partageons jamais vos données personnelles avec des tiers à des fins commerciales.</strong></p>
+
+  <h2>4. Services tiers</h2>
+  <p><strong>Stripe</strong> (paiements) : vos données de paiement sont traitées directement par Stripe, certifié PCI-DSS niveau 1. Nous n'avons aucun accès à vos informations bancaires. Politique de confidentialité Stripe : stripe.com/privacy</p>
+  <p><strong>Mistral AI</strong> (intelligence artificielle) : les messages des clients finaux sont traités par Mistral AI pour générer des réponses. Ces données ne sont pas utilisées pour entraîner des modèles tiers.</p>
+  <p><strong>Railway</strong> (hébergement) : notre infrastructure est hébergée sur des serveurs sécurisés basés en Europe.</p>
+
+  <h2>5. Sécurité des données</h2>
+  <p>Nous mettons en œuvre des mesures techniques et organisationnelles appropriées pour protéger vos données contre tout accès non autorisé, modification, divulgation ou destruction. Toutes les communications entre votre navigateur et nos serveurs sont chiffrées via HTTPS/SSL.</p>
+
+  <h2>6. Conservation des données</h2>
+  <p>Vos données personnelles sont conservées pendant la durée de votre abonnement actif, puis pendant 12 mois après la résiliation de votre compte afin de respecter nos obligations légales et comptables. Les données de conversation avec le bot sont conservées 6 mois maximum.</p>
+
+  <h2>7. Vos droits (RGPD)</h2>
+  <p>Conformément au Règlement Général sur la Protection des Données (RGPD — Règlement UE 2016/679), vous disposez des droits suivants :</p>
+  <p>— <strong>Droit d'accès</strong> : obtenir une copie de vos données personnelles ;</p>
+  <p>— <strong>Droit de rectification</strong> : corriger des données inexactes ou incomplètes ;</p>
+  <p>— <strong>Droit à l'effacement</strong> : demander la suppression de vos données ;</p>
+  <p>— <strong>Droit d'opposition</strong> : vous opposer au traitement de vos données ;</p>
+  <p>— <strong>Droit à la portabilité</strong> : recevoir vos données dans un format structuré ;</p>
+  <p>— <strong>Droit à la limitation</strong> : demander la limitation du traitement.</p>
+  <p>Pour exercer ces droits, contactez-nous à <strong>Cr8management@gmail.com</strong>. Nous nous engageons à répondre dans un délai maximum de 30 jours. Vous avez également le droit d'introduire une réclamation auprès de la CNIL (cnil.fr).</p>
+
+  <h2>8. Cookies</h2>
+  <p>Nous utilisons uniquement des cookies strictement nécessaires au fonctionnement du site. Vous pouvez refuser les cookies non essentiels via la bannière de consentement sans impact sur votre navigation. Pour en savoir plus sur les cookies, consultez le site de la CNIL.</p>
+
+  <h2>9. Modifications de cette politique</h2>
+  <p>Nous nous réservons le droit de modifier cette politique de confidentialité à tout moment. En cas de modification substantielle, vous serez informé par email. La date de dernière mise à jour est indiquée en haut de cette page.</p>
+
+  <h2>10. Contact</h2>
+  <p>Pour toute question concernant cette politique ou vos données personnelles :<br>
+  <strong>Email :</strong> Cr8management@gmail.com<br>
+  <strong>Délai de réponse :</strong> sous 30 jours ouvrés</p>
+</div>
 
 <!-- NAV -->
 <nav>
@@ -202,14 +350,12 @@
   <div class="hero-content">
     <div class="hero-badge"><span class="dot"></span> IA disponible 24h/24 · Répond en 3 secondes</div>
     <h1>Automatisez votre<br>support <span class="gradient">e-commerce</span><br>avec l'IA</h1>
-    <p>ShopBot répond à vos clients instantanément — commandes, retours, livraison. Installez-le en 1 minute sur votre boutique.</p>
+    <p>ShopBot répond à vos clients instantanément — retours, livraison, FAQ. Installez-le en 1 minute sur votre boutique.</p>
     <div class="hero-btns">
       <a href="https://buy.stripe.com/test_4gM7sE9o11Xc2sA6WibEA00" class="btn-gradient">Essayer 14 jours gratuits →</a>
       <a href="#features" class="btn-ghost">Voir comment ça marche</a>
     </div>
     <p style="font-size:13px;color:#bbb;margin-top:16px">Sans engagement · Annulable à tout moment</p>
-
-    <!-- MINI CHAT DÉMO -->
     <div class="hero-demo">
       <div class="demo-widget">
         <div class="demo-header">
@@ -233,7 +379,7 @@
 
 <!-- MARQUEE -->
 <div class="marquee-wrap">
-  <div class="marquee-track" id="marquee">
+  <div class="marquee-track">
     <div class="marquee-item"><span class="marquee-dot"></span>SHOPIFY</div>
     <div class="marquee-item"><span class="marquee-dot"></span>WOOCOMMERCE</div>
     <div class="marquee-item"><span class="marquee-dot"></span>PRESTASHOP</div>
@@ -303,28 +449,18 @@
   </div>
 </section>
 
-<!-- TÉMOIGNAGES -->
-<section class="testi-section">
-  <div class="testi-inner">
-    <div class="section-tag" style="color:#4F46E5">Témoignages</div>
-    <h2>Ils ont automatisé<br>leur support</h2>
-    <div class="testi-grid">
-      <div class="testi-card fade-up">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">"ShopBot répond à 80% de nos tickets automatiquement. Mes clients sont ravis et mon équipe peut enfin se concentrer sur ce qui compte."</p>
-        <div class="testi-author"><div class="testi-avatar">SL</div><div><div class="testi-name">Sophie L.</div><div class="testi-role">Fondatrice, Boutique Mode Paris</div></div></div>
-      </div>
-      <div class="testi-card fade-up">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">"Installation en 5 minutes sur Shopify. Le lendemain, mes clients utilisaient déjà le chat. Je recommande à tous les e-commerçants."</p>
-        <div class="testi-author"><div class="testi-avatar">MR</div><div><div class="testi-name">Marc R.</div><div class="testi-role">CEO, E-commerce Sport</div></div></div>
-      </div>
-      <div class="testi-card fade-up">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">"49€/mois pour remplacer 10h de support par semaine. Le calcul est vite fait. ShopBot s'est rentabilisé dès le premier jour."</p>
-        <div class="testi-author"><div class="testi-avatar">AL</div><div><div class="testi-name">Anaïs L.</div><div class="testi-role">Gérante, Cosmétiques Bio</div></div></div>
-      </div>
+<!-- EARLY ADOPTERS -->
+<section class="early-section" id="early">
+  <div class="early-inner">
+    <div class="section-tag" style="color:#4F46E5">Offre de lancement</div>
+    <h2>Soyez parmi les premiers</h2>
+    <p>ShopBot est en phase de lancement. Les premières boutiques bénéficient d'avantages exclusifs et d'un accompagnement personnalisé.</p>
+    <div class="early-perks">
+      <div class="perk"><div class="perk-icon">🎯</div><h3>Tarif bloqué</h3><p>49€/mois garanti à vie, même quand les prix augmentent.</p></div>
+      <div class="perk"><div class="perk-icon">🤝</div><h3>Onboarding offert</h3><p>On configure ShopBot avec vous, gratuitement.</p></div>
+      <div class="perk"><div class="perk-icon">💡</div><h3>Influence le produit</h3><p>Vos retours façonnent directement les prochaines fonctionnalités.</p></div>
     </div>
+    <a href="https://buy.stripe.com/test_4gM7sE9o11Xc2sA6WibEA00" class="btn-gradient" style="display:inline-block">Rejoindre les early adopters →</a>
   </div>
 </section>
 
@@ -344,10 +480,10 @@
         <li><div class="pf-check">✓</div>Infos livraison & retours</li>
         <li><div class="pf-check">✓</div>FAQ automatique en français</li>
         <li><div class="pf-check">✓</div>Installation en 1 minute</li>
-        <li><div class="pf-check">✓</div>Support par email</li>
+        <li><div class="pf-check">✓</div>Onboarding personnalisé offert</li>
       </ul>
       <a href="https://buy.stripe.com/test_4gM7sE9o11Xc2sA6WibEA00" class="pricing-btn">Commencer l'essai gratuit →</a>
-      <p class="pricing-note">14 jours gratuits · Carte requise · Annulable à tout moment</p>
+      <p class="pricing-note">14 jours gratuits · Annulable à tout moment</p>
     </div>
   </div>
 </section>
@@ -356,7 +492,7 @@
 <section class="cta-section">
   <div class="cta-inner">
     <h2>Prêt à automatiser<br>votre support ?</h2>
-    <p>Rejoignez les boutiques qui économisent des heures chaque semaine grâce à ShopBot.</p>
+    <p>Rejoignez les premières boutiques qui font confiance à ShopBot.</p>
     <a href="https://buy.stripe.com/test_4gM7sE9o11Xc2sA6WibEA00" class="btn-gradient" style="display:inline-block">Essayer 14 jours gratuitement →</a>
     <p style="font-size:13px;color:rgba(255,255,255,.3);margin-top:16px">Sans engagement · Annulable à tout moment</p>
   </div>
@@ -364,34 +500,70 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="foot-logo">Shop<em>Bot</em></div>
-  <p>© 2026 ShopBot · Fait en France 🇫🇷</p>
-  <div class="foot-links">
-    <a href="#">Confidentialité</a>
-    <a href="#">CGU</a>
-    <a href="mailto:contact@shopbot.fr">Contact</a>
+  <div class="footer-top">
+    <div>
+      <div class="foot-logo">Shop<em>Bot</em></div>
+      <p class="foot-desc">Assistant IA support client pour boutiques e-commerce. Fait en France 🇫🇷</p>
+    </div>
+    <div class="foot-col">
+      <h4>Produit</h4>
+      <a href="#features">Fonctionnalités</a>
+      <a href="#pricing">Tarifs</a>
+      <a href="https://buy.stripe.com/test_4gM7sE9o11Xc2sA6WibEA00">Essai gratuit</a>
+    </div>
+    <div class="foot-col">
+      <h4>Légal</h4>
+      <a href="#" onclick="showLegal('cgu');return false">CGU</a>
+      <a href="#" onclick="showLegal('privacy');return false">Politique de confidentialité</a>
+    </div>
+    <div class="foot-col">
+      <h4>Contact</h4>
+      <a href="mailto:Cr8management@gmail.com">Cr8management@gmail.com</a>
+      <a href="#early">Devenir early adopter</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Cr8management — ShopBot. Tous droits réservés.</p>
+    <div>
+      <a href="#" onclick="showLegal('cgu');return false">CGU</a>
+      <a href="#" onclick="showLegal('privacy');return false">Confidentialité</a>
+      <a href="mailto:Cr8management@gmail.com">Contact</a>
+    </div>
   </div>
 </footer>
 
 <script>
-// Animation scroll
+// Scroll animations
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.1 });
 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
+// Legal pages
+function showLegal(type) {
+  document.getElementById('legal-'+type).classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function hideLegal() {
+  document.querySelectorAll('.legal-page').forEach(p => p.classList.remove('active'));
+  document.body.style.overflow = '';
+}
+
 // Chat démo animé
 const msgs = [
-  { role: 'user', text: 'Où est ma commande #FR-4821 ?' },
-  { role: 'bot', text: 'Votre commande est en transit 🚚\nLivraison estimée : demain avant 18h !' },
+  { role: 'user', text: 'Quels sont vos délais de livraison ?' },
+  { role: 'bot', text: 'Nos délais sont de 3 à 5 jours ouvrés 🚚\nLivraison gratuite dès 50€ !' },
   { role: 'user', text: 'Comment faire un retour ?' },
-  { role: 'bot', text: 'Nos retours sont gratuits sous 30 jours ↩️\nConnectez-vous à votre espace client pour générer l\'étiquette.' }
+  { role: 'bot', text: 'Retours gratuits sous 30 jours ↩️\nContactez-nous et on s\'occupe de tout.' }
 ];
 let msgIndex = 0;
 const demoMsgs = document.getElementById('demoMsgs');
 
 function addDemoMsg() {
-  if(msgIndex >= msgs.length) { msgIndex = 0; demoMsgs.innerHTML = '<div class="dm-bot">Bonjour ! Comment puis-je vous aider ? 😊</div>'; }
+  if(msgIndex >= msgs.length) {
+    msgIndex = 0;
+    demoMsgs.innerHTML = '<div class="dm-bot">Bonjour ! Comment puis-je vous aider ? 😊</div>';
+  }
   const m = msgs[msgIndex];
   if(m.role === 'bot') {
     const typing = document.createElement('div');
