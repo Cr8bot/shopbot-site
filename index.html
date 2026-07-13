@@ -246,15 +246,20 @@
           <div class="demo-avatar">🤖</div>
           <div class="demo-info">
             <p>Assistant ShopBot</p>
-            <small><span class="demo-online"></span>En ligne · Répond instantanément</small>
+            <small><span class="demo-online"></span>En ligne · Testez maintenant !</small>
           </div>
         </div>
         <div class="demo-msgs" id="demoMsgs">
-          <div class="dm-bot">Bonjour ! Comment puis-je vous aider ? 😊</div>
+          <div class="dm-bot">Bonjour ! Je suis ShopBot, votre assistant e-commerce IA. Posez-moi une question sur une commande, un produit ou une livraison 😊</div>
+        </div>
+        <div style="padding:8px 12px;display:flex;flex-wrap:wrap;gap:6px;background:#f8f9ff;border-top:1px solid #f0f0f0">
+          <button onclick="demoSend('Où est ma commande #1001 ?')" style="padding:5px 10px;border:1px solid #ddd;border-radius:20px;font-size:11px;cursor:pointer;background:white;color:#333">📦 Ma commande</button>
+          <button onclick="demoSend('Comment faire un retour ?')" style="padding:5px 10px;border:1px solid #ddd;border-radius:20px;font-size:11px;cursor:pointer;background:white;color:#333">↩️ Retour</button>
+          <button onclick="demoSend('Vous livrez en Belgique ?')" style="padding:5px 10px;border:1px solid #ddd;border-radius:20px;font-size:11px;cursor:pointer;background:white;color:#333">🚚 Livraison</button>
         </div>
         <div class="demo-input">
-          <div class="demo-input-field">Écrivez votre message...</div>
-          <button class="demo-send">➤</button>
+          <input id="demoInput" type="text" placeholder="Posez votre question..." onkeydown="if(event.key==='Enter')demoSend()" style="flex:1;background:#f5f5f5;border:none;border-radius:20px;padding:8px 14px;font-size:12px;color:#333;outline:none">
+          <button class="demo-send" onclick="demoSend()">➤</button>
         </div>
       </div>
     </div>
@@ -516,49 +521,54 @@ document.querySelectorAll('.legal-overlay').forEach(o => {
   o.addEventListener('click', function(e) { if(e.target === o) hideLegal(); });
 });
 
-// Chat démo animé
-const msgs = [
-  { role: 'user', text: 'Où est ma commande #1234 ?' },
-  { role: 'bot', text: 'Votre commande #1234 est en transit 🚚\nLivraison estimée : demain avant 18h via Colissimo !' },
-  { role: 'user', text: 'Comment faire un retour ?' },
-  { role: 'bot', text: 'Nos retours sont gratuits sous 30 jours ↩️\nConnectez-vous à votre espace client pour générer l\'étiquette de retour.' },
-  { role: 'user', text: 'Vous avez ce snowboard en stock ?' },
-  { role: 'bot', text: 'Oui, le Collection Snowboard Hydrogen est disponible ! 🏂\nStock : 50 unités · Prix : 600 €' }
-];
-let msgIndex = 0;
+// Vrai chat connecté à ShopBot
+const SHOPBOT_URL = 'https://shopbot-production-8e84.up.railway.app';
 const demoMsgs = document.getElementById('demoMsgs');
 
-function addDemoMsg() {
-  if(msgIndex >= msgs.length) { msgIndex = 0; demoMsgs.innerHTML = '<div class="dm-bot">Bonjour ! Comment puis-je vous aider ? 😊</div>'; }
-  const m = msgs[msgIndex];
-  if(m.role === 'bot') {
-    const typing = document.createElement('div');
-    typing.className = 'dm-typing';
-    typing.innerHTML = '<span></span><span></span><span></span>';
-    demoMsgs.appendChild(typing);
+function demoSend(suggestion) {
+  const input = document.getElementById('demoInput');
+  const text = suggestion || input.value.trim();
+  if (!text) return;
+  if (input) input.value = '';
+
+  // Message utilisateur
+  const um = document.createElement('div');
+  um.className = 'dm-user';
+  um.textContent = text;
+  demoMsgs.appendChild(um);
+  demoMsgs.scrollTop = demoMsgs.scrollHeight;
+
+  // Animation frappe
+  const typing = document.createElement('div');
+  typing.className = 'dm-typing';
+  typing.innerHTML = '<span></span><span></span><span></span>';
+  demoMsgs.appendChild(typing);
+  demoMsgs.scrollTop = demoMsgs.scrollHeight;
+
+  // Appel au vrai serveur ShopBot
+  fetch(SHOPBOT_URL + '/chat', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ message: text, shopId: 'SHOP_001' })
+  })
+  .then(r => r.json())
+  .then(data => {
+    typing.remove();
+    const bm = document.createElement('div');
+    bm.className = 'dm-bot';
+    bm.style.whiteSpace = 'pre-line';
+    bm.textContent = data.reply;
+    demoMsgs.appendChild(bm);
     demoMsgs.scrollTop = demoMsgs.scrollHeight;
-    setTimeout(() => {
-      typing.remove();
-      const el = document.createElement('div');
-      el.className = 'dm-bot';
-      el.style.whiteSpace = 'pre-line';
-      el.textContent = m.text;
-      demoMsgs.appendChild(el);
-      demoMsgs.scrollTop = demoMsgs.scrollHeight;
-      msgIndex++;
-      setTimeout(addDemoMsg, 3000);
-    }, 1200);
-  } else {
-    const el = document.createElement('div');
-    el.className = 'dm-user';
-    el.textContent = m.text;
-    demoMsgs.appendChild(el);
-    demoMsgs.scrollTop = demoMsgs.scrollHeight;
-    msgIndex++;
-    setTimeout(addDemoMsg, 1000);
-  }
+  })
+  .catch(() => {
+    typing.remove();
+    const bm = document.createElement('div');
+    bm.className = 'dm-bot';
+    bm.textContent = 'Désolé, une erreur est survenue. Réessayez !';
+    demoMsgs.appendChild(bm);
+  });
 }
-setTimeout(addDemoMsg, 2000);
 </script>
 </body>
 </html>
