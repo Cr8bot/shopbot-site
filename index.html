@@ -549,7 +549,7 @@ function demoSend(suggestion) {
   fetch(SHOPBOT_URL + '/chat', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ message: text, shopId: 'SHOP_001' })
+    body: JSON.stringify({ message: text, shopId: 'SHOP_DEMO' })
   })
   .then(r => r.json())
   .then(data => {
