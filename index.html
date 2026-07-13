@@ -54,7 +54,7 @@
     .demo-info p{color:white;font-weight:700;font-size:14px;margin:0}
     .demo-info small{color:rgba(255,255,255,.7);font-size:11px}
     .demo-online{width:8px;height:8px;border-radius:50%;background:#22C55E;display:inline-block;margin-right:4px}
-    .demo-msgs{padding:16px;display:flex;flex-direction:column;gap:10px;background:#f8f9ff;max-height:200px;overflow:hidden}
+    .demo-msgs{padding:16px;display:flex;flex-direction:column;gap:10px;background:#f8f9ff;max-height:200px;overflow-y:auto;overscroll-behavior:contain}
     .dm-bot,.dm-user{padding:10px 14px;border-radius:14px;font-size:13px;line-height:1.5;max-width:85%}
     .dm-bot{background:white;color:#333;align-self:flex-start;border-bottom-left-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,.06)}
     .dm-user{background:linear-gradient(135deg,#4F46E5,#7C3AED);color:white;align-self:flex-end;border-bottom-right-radius:4px}
@@ -253,7 +253,7 @@
           <div class="dm-bot">Bonjour ! Je suis ShopBot, votre assistant e-commerce IA. Posez-moi une question sur une commande, un produit ou une livraison 😊</div>
         </div>
         <div style="padding:8px 12px;display:flex;flex-wrap:wrap;gap:6px;background:#f8f9ff;border-top:1px solid #f0f0f0">
-          <button onclick="demoSend('Où est ma commande #1001 ?')" style="padding:5px 10px;border:1px solid #ddd;border-radius:20px;font-size:11px;cursor:pointer;background:white;color:#333">📦 Ma commande</button>
+          <button onclick="demoSend('Comment suivre ma commande ?')" style="padding:5px 10px;border:1px solid #ddd;border-radius:20px;font-size:11px;cursor:pointer;background:white;color:#333">📦 Ma commande</button>
           <button onclick="demoSend('Comment faire un retour ?')" style="padding:5px 10px;border:1px solid #ddd;border-radius:20px;font-size:11px;cursor:pointer;background:white;color:#333">↩️ Retour</button>
           <button onclick="demoSend('Vous livrez en Belgique ?')" style="padding:5px 10px;border:1px solid #ddd;border-radius:20px;font-size:11px;cursor:pointer;background:white;color:#333">🚚 Livraison</button>
         </div>
